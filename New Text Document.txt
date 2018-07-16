@@ -1,0 +1,225 @@
+ int[] soru;
+        public void sayitut(int[] soru) {
+            soru = new int[3];
+            Random rnd = new Random();
+            //soru = new int[3];
+            //int[] ttahmin = new int[3];
+            int i = 0;
+          
+            //tahmin edilicek sayı 
+            while (i < 3){
+                soru[i] = rnd.Next(0, 10);
+
+                if (i == 2 && soru[2] == soru[1] || soru[2] == soru[0]){
+                    continue;
+                }
+                if (i == 1 && soru[1] == soru[0]) {
+                    continue;
+                }
+                if (i == 0) {
+                    if (soru[0] == 0)
+                        continue;
+                }
+                i++;
+            }
+            label5.Text = " " + soru[0] + " " + soru[1] + " " + soru[2];
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            textBox1.Enabled = false;
+            textBox2.Enabled = false;
+            textBox3.Enabled = false;
+            textBox4.Enabled = false;
+        }
+
+
+
+
+
+ Random rnd = new Random();
+            bool esit=false; 
+            int tahmin;
+            
+            int[] ttahmin = new int[3];
+            int i=0, j;
+           int yerinde = 0, ydat = 0;
+            int tahmintut;
+            int arti = 0, eksi = 0;
+
+
+            for (i = 0; i < 11; i++) {
+                label6.Text = " ";
+                do {
+                    tahmin = (int)numericUpDown1.Value;
+                    if (1000 < tahmin || tahmin < 100) { 
+                        // label6.Text = "Bu Deger Limitlerin Disinda ..";
+                        MessageBox.Show("Bu Deger Limitlerin Disinda ..");
+                    }
+                }
+                while (tahmin > 1000 || tahmin < 100);
+
+
+                //tahmin sayısını diziye atadık
+                ttahmin[2] = tahmin / 100;
+                tahmin = tahmin % 100;
+                // MessageBox.Show(" "+ ttahmin[2]+"    "+ tahmin);
+                ttahmin[1] = tahmin / 10;
+                tahmin = tahmin % 10;
+                //  MessageBox.Show(" " + ttahmin[1] + "    " + tahmin);
+                ttahmin[0] = tahmin;
+                // MessageBox.Show(" " + ttahmin[0] + "    " + tahmin);
+
+                    /*if (ttahmin[0] == 0) {
+                        MessageBox.Show("Girdiginiz sayida hata var. yeniden deneyin..");
+                        continue;
+                    }*/
+                if (ttahmin[1] == ttahmin[0]) {
+                    label6.Text = "Girdiginiz sayida hata var. yeniden deneyin..";
+                    //MessageBox.Show("Girdiginiz sayida hata var. yeniden deneyin..");
+                    continue;
+                    }
+                if (ttahmin[2] == ttahmin[1] || ttahmin[2] == ttahmin[0]) {
+                    label6.Text = "Girdiginiz sayida hata var. yeniden deneyin..";
+                    //MessageBox.Show("Girdiginiz sayida hata var. yeniden deneyin..");
+                    continue;
+                    }
+
+                }
+
+            for (i = 0; i < 4; i++)
+            {
+
+                if (ttahmin[i] == soru[0] || ttahmin[i] == soru[1] || ttahmin[i] == soru[2] || ttahmin[i] == soru[3])
+                {
+
+                    if (soru[i] != ttahmin[i])
+                    {
+                        ydat += 1;
+                        //	printf("\n%d",i); which one
+                    }
+                    if (ttahmin[i] == soru[i])
+                    {
+                        yerinde += 1;
+                        //	printf("\t%d\n",i); which one
+                    }
+                    eksi += ydat;
+                    arti += yerinde;
+                }
+            }
+            label6.Text = ydat + "  " + yerinde;
+            ydat = 0;
+            yerinde = 0;
+        }
+        /*int tb1 = int.Parse(textBox1.Text);
+        int tb2 = int.Parse(textBox2.Text);
+        int tb3 = int.Parse(textBox3.Text);
+        int tb4 = int.Parse(textBox4.Text);
+
+        tb1 = ttahmin[0];
+        tb2 = ttahmin[1];
+        tb3 = ttahmin[2];
+        tb4 = ttahmin[3];*/
+
+    }
+    /*private void button2_Click(object sender, EventArgs e)
+    {
+        int mod = Convert.ToInt32(comboBox1.Text);
+        sayitut(soru);
+
+
+    }*/
+
+        
+
+        
+    }
+
+    /*
+     void game(){
+srand(time(NULL));
+int soru[4];
+int i,j;
+int yerinde=0,ydat=0;
+int tahmintut;
+int arti=0,eksi=0;
+// farkly rakamlara sahip diziyi burada yaptyk
+
+//?imdi oyunu hazyrla
+printf("\t       ______________________________________\n");
+
+for(j=1;j<11;j++){	
+int tahmin;
+int tdizi[4];
+
+do{
+    printf("\n\t\t %d. Your Guess: ",j);
+    scanf("%d",&tahmin);
+    if(10000<tahmin||tahmin<1000){
+        printf("\t\tThis Value is Out of the Limits..\n\n");
+    }
+}
+while(tahmin>10000 || tahmin<1000);
+
+tahmintut=tahmin;
+tdizi[0]=tahmin/1000;
+tahmin=tahmin%1000;
+tdizi[1]=tahmin/100;
+tahmin=tahmin%100;
+tdizi[2]=tahmin/10;
+tahmin=tahmin%10;
+tdizi[3]=tahmin;
+
+//girilen ayyyynyny ayny rakam içermesi
+    if(tdizi[1]==tdizi[0]){
+        printf("\t\t1.You can't have same numbers in your guess..\n") ;
+        continue;
+    }
+    if(tdizi[2]==tdizi[1] || tdizi[2]==tdizi[0] ){
+        printf("\t\t2.You can't have same numbers in your guess..\n") ;
+        continue;
+    }
+    if(tdizi[3]==tdizi[2] || tdizi[3]==tdizi[1] || tdizi[3]==tdizi[0]){					j+=1;
+        printf("\t\t3.You can't have same numbers in your guess..\n") ;
+        continue;
+    }
+
+    for(i=0;i<4;i++){
+
+        if(tdizi[i]==soru[0]||tdizi[i]==soru[1]||tdizi[i]==soru[2]||tdizi[i]==soru[3]){
+
+            if(soru[i]!=tdizi[i]){
+                ydat+=1;
+            //	printf("\n%d",i); which one
+            }
+            if(tdizi[i]==soru[i]){
+                yerinde+=1;
+            //	printf("\t%d\n",i); which one
+            }
+            eksi+=ydat;
+            arti+=yerinde;
+        }
+    }
+    printf("\n\t\t-%d , +%d\n\n",ydat,yerinde); 
+    if(yerinde==4){
+        printf("\t\t++++++++++++++++++++++++++++++\n\n");
+        printf("\t\tCongralition..\n\t\tYou know it..\n\n\n");
+        printf("\t\tThe Desired Number is %d",tahmintut);
+
+        int tpoin=poin(arti,eksi,j);
+        sprintf(user.uscore,"%d",tpoin);//puany char dizisine atadyk
+        printf("\n\n\t\tYour Poin: %d\n",tpoin); 
+        writescore();
+        break;
+    }
+    ydat=0;
+    yerinde=0;
+}
+if(yerinde!=4){
+    printf("\t\t**************************\n");
+    printf("\t\t...Game Over...\n\n"); 
+    printf("\t\tThe Desired Number is %d\n",tahmintut);
+}
+
+//	printf("\t       ______________________________________\n");
+}*/
